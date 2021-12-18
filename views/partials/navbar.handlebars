@@ -1,0 +1,56 @@
+<header>
+  <nav>
+    <div class="nav-wrapper">
+      <img class="title_img" src="/images/logo.jpg" alt="logo" />
+      <ul id="nav-mobile" class="right hide-on-med-and-down menu_list">
+        {{#if isHome}}
+        <li><a href="/" class="active">Home</a></li>
+        {{else}}
+        <li><a href="/">Home</a></li>
+        {{/if}}
+        {{#if isMenu}}
+        <li><a href="/menu" class="active">Menu</a></li>
+        {{else}}
+        <li><a href="/menu">Menu</a></li>
+        {{/if}}
+        {{#if isAuth}}
+        {{#if isRecipe}}
+        <li><a href="/recipe" class="active">Recipe</a></li>
+        {{else}}
+        <li><a href="/recipe">Recipe</a></li>
+        {{/if}}
+        {{#if isCart}}
+        <li><a href="/cart" class="active">Cart</a></li>
+        {{else}}
+        <li><a href="/cart">Cart</a></li>
+        {{/if}}
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Admin</a>
+
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="/admin/dish">Dishes</a></li>
+          <li><a href="/admin/top">Top dishes</a></li>
+          <li><a href="/admin/order">Order</a></li>
+          <li><a href="/admin/news">News</a></li>
+          <li><a href="/admin/events">Events</a></li>
+          <li><a href="/admin/booking">Reservation</a></li>
+        </ul>
+        <li><a href="/auth/logout" class="active">Sign out</a></li>
+        {{else}}
+        {{#if isLogin}}
+        <li><a href="/auth/login#login" class="active">Sign in</a></li>
+        {{else}}
+        <li><a href="/auth/login#login">Sign in</a></li>
+        {{/if}}
+        {{/if}}
+      </ul>
+    </div>
+    <div class="menu_burger">
+      <div class="burger_items">
+        <div class="burger"></div>
+      </div>
+    </div>
+  </nav>
+  <div class="back_menu"></div>
+</header>

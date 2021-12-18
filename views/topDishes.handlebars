@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 m6 offset-m3">
+      <h4 class="center-align">Select dishes of day</h4>
+      {{#if dishes.length}}
+      <form action="/admin/top/select" method="POST">
+        <select multiple name="select">
+          <option value="" disabled selected>Choose your option</option>
+          {{#each dishes}}
+          <option value="{{title}}" name="{{title}}">{{title}}</option>
+          {{/each}}
+        </select>
+        <input type="hidden" name="_csrf" value="{{csrf}}" />
+        <button class="col s12 m4 offset-m1 btn grey darken-4" type="submit">Add</button>
+      </form>
+      <form action="/admin/top/delete" method="POST">
+      <input type="hidden" name="_csrf" value="{{csrf}}" />
+         <button class="col s12 m4 offset-m2 btn grey darken-4" type="submit">Delete all</button>
+      </form>
+      {{else}}
+      <p>You haven`t any dishes</p>
+      {{/if}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="row">
+  {{#if error}}
+  <p class="alert">{{error}}</p>
+  {{/if}}
+  <div class="col s12 m4 offset-m4">
+    <form action="/admin/add/dish" method="POST">
+      <h4 class="center-align">Add new dish</h4>
+      <div class="row">
+        <div class="input-field">
+          <input id="title" name="title" type="text" class="validate">
+          <label for="title">Title</label>
+        </div>
+      </div>
+      <div class="row">
+        <select name="category">
+          <option value="" disabled selected>Choose category</option>
+          <option value="Breakfast" name="Breakfast">Breakfast</option>
+          <option value="Lunch" name="Lunch">Lunch</option>
+          <option value="Desserts" name="Desserts">Desserts</option>
+          <option value="Soups" name="Soups">Soups</option>
+          <option value="Dinner" name="Dinner">Dinner</option>
+          <option value="Pizza" name="Pizza">Pizza</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="input-field">
+          <input id="desc" name="description" type="text" class="validate">
+          <label for="desc">Description</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field">
+          <input id="image" name="image" type="text" class="validate">
+          <label for="image">Image url</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field">
+          <input id="price" name="price" type="number" class="validate">
+          <label for="price">Price</label>
+        </div>
+      </div>
+      <p>
+        <label>
+          <input type="checkbox" name="isSpecial" class="filled-in" checked="checked" />
+          <span>Today Special</span>
+        </label>
+      </p>
+      <input type="hidden" name="_csrf" value="{{csrf}}">
+      <button type="submit" class="col s2 offset-s5 btn">Add</button>
+    </form>
+  </div>
+</div>

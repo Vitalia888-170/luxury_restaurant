@@ -1,0 +1,468 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+li {
+  list-style: none;
+}
+a {
+  color: black;
+  text-decoration: none;
+  transition: 0.4s ease-in-out;
+}
+
+.valign-wrapper {
+  justify-content: center;
+  align-items: center;
+}
+i {
+  margin-right: 10px;
+}
+.btn-large {
+  margin-top: 20px;
+}
+.wrapper {
+  margin: 0 auto;
+}
+
+/*HEADER*/
+
+.back_menu,
+.menu_burger {
+  display: none;
+}
+.nav-wrapper {
+  background-color: white;
+  z-index: 10;
+  padding: 0 35px;
+}
+.nav-wrapper ul li a {
+  color: rgb(12, 13, 27);
+}
+.nav-wrapper img {
+  height: 100%;
+}
+/*Menu_burger*/
+@media (max-device-width: 1024px) {
+  .menu_burger {
+    display: block;
+    width: 35px;
+    height: 90px;
+    position: absolute;
+    top: -14px;
+    right: 20px;
+  }
+
+  .burger_items {
+    width: 35px;
+    height: 3px;
+    position: relative;
+    top: 45px;
+    right: 0;
+    z-index: 3;
+  }
+  .burger {
+    width: 35px;
+    height: 5px;
+    background-color: #7b8c98;
+  }
+  .menu_burger.active .burger {
+    display: none;
+  }
+  .burger_items:before {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 5px;
+    background-color: #7b8c98;
+    top: -12px;
+    left: 0;
+    transition: all 0.5s ease;
+  }
+  .menu_burger.active .burger_items:before {
+    width: 35px;
+    top: -2px;
+    transform: rotate(-45deg);
+    background-color: #fff;
+  }
+  .burger_items:after {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 5px;
+    background-color: #7b8c98;
+    top: 12px;
+    left: 0;
+    transition: all 0.5s ease;
+  }
+  .menu_burger.active .burger_items:after {
+    width: 35px;
+    transform: rotate(45deg);
+    top: -2px;
+    background-color: #fff;
+  }
+  header .header-nav {
+    display: none;
+  }
+  .back_menu.active {
+    width: 100%;
+    height: 100vh;
+    display: block;
+    background-color: #373844;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.8s ease;
+  }
+  header .header-nav.active {
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%);
+    z-index: 3;
+    text-align: center;
+    transition: all 3s ease;
+  }
+  header .header-nav.active .menu_list {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  header .header-nav.active .menu_list li {
+    margin-bottom: 45px;
+  }
+}
+/*LOGIN PAGE*/
+.auth-container {
+  margin-top: 100px;
+}
+.auth-nav {
+  display: flex;
+  justify-content: space-around;
+  color: white;
+}
+.auth-content {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  z-index: 5;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+.auth-content img {
+  width: 46%;
+  margin-top: -100px;
+}
+.auth-bg {
+  width: 100%;
+  height: 100%;
+  max-height: 430px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.auth-tabs {
+  width: 32%;
+  margin-top: -40px;
+}
+.login-tab {
+  margin-top: 15px;
+}
+.tablink {
+  padding: 5px 20px;
+  color: white;
+}
+
+.login-tab button {
+  display: block;
+  width: 100%;
+  height: 35px;
+  background-color: rgb(8, 8, 19);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.login-tab input {
+  width: 100%;
+  height: 35px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: white;
+}
+
+.reset-block a {
+  display: block;
+  margin: 0 auto;
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  padding: 10px 0;
+  transition: 0.4s ease;
+}
+.reset-block a:hover {
+  color: black;
+}
+
+.title-container {
+  position: relative;
+  top: -60px;
+  overflow: hidden;
+}
+
+.title-logo {
+  width: 100%;
+  max-width: 300px;
+}
+.title-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: url("https://magnoliavillas.com/wp-content/uploads/2020/10/Dinner-horz-1024x768-1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: blur(3px);
+  z-index: -1;
+}
+.valign-wrapper.logo {
+  position: relative;
+  height: 100vh;
+}
+.valign-wrapper.logo h5 {
+  position: absolute;
+  width: 280px;
+  background-color: black;
+  padding: 12px;
+  color: white;
+  top: 53%;
+}
+.details {
+  padding: 20px 0;
+  margin: -60px 0 0 0;
+}
+.slider-container {
+  margin-top: 10px;
+  position: relative;
+}
+.slider {
+  position: relative;
+}
+.slider-bg {
+  width: 100%;
+  height: 380px;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.slider .indicators {
+  top: -30px;
+  left: 60%;
+  z-index: 6;
+}
+.slider .indicators .indicator-item {
+  width: 7px;
+  height: 7px;
+}
+.slider .indicators .indicator-item.active {
+  background-color: orange;
+}
+.slider-container > h4 {
+  padding-top: 15px;
+  position: relative;
+  z-index: 2;
+}
+.slider {
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  height: 650px;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%);
+}
+.slider .slides {
+  height: 500px;
+  background-color: transparent;
+}
+.slider .slides li {
+  background-color: transparent;
+}
+.slider .slides li img {
+  height: 250px;
+}
+
+.special_items {
+  font-size: 22px;
+  font-weight: 700;
+}
+.special_items h4,
+h3 {
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 7px;
+}
+.special_items h3 {
+  color: #ff69b4;
+}
+.row .special {
+  margin-top: 10px;
+}
+.card .card-image .card-title {
+  font-size: 18px;
+  font-weight: 700;
+  left: 25%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.card .card-content {
+  padding: 10px 20px;
+}
+.card-link {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+.img-container {
+  width: 100%;
+  height: 250px;
+}
+.dollars {
+  text-align: right;
+  font-size: 18px;
+  padding-top: 10px;
+}
+.food_list {
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  grid-column-gap:10px;
+  grid-row-gap:10px;
+}
+.food_menu {
+  margin: 0 auto;
+  text-align: center;
+}
+.category-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.main_list_dishes {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 322px;
+  margin: 0 auto;
+}
+.dishes_items {
+  border-bottom: 1px solid #eeeeee;
+  margin-right: 10px;
+
+}
+.dishes_title h5 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.explood_food {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+/*CLIENTS*/
+.clients {
+  background-color: rgba(0, 0, 0, 0.9);
+  padding-bottom: 20px;
+  height:350px;
+  color: white;
+  text-align: center;
+}
+@media(max-width:600px){
+  .clients{
+    height: 450px;
+  }
+}
+.clients h4 {
+  padding-top: 20px;
+}
+
+.carousel .carousel-item {
+  margin-top: -70px;
+  width: 80%;
+}
+.clients_foto {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.clients_foto > img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+#dropdown1 {
+  width: 140px;
+}
+
+.booking{
+  padding: 0 35px;
+}
+footer{
+  width: 100%;
+  min-height:400px ;
+  padding: 0 35px;
+}
+footer nav{
+  background-color:transparent;
+  box-shadow:0 0 0 rgb(8, 8, 19);
+}
+
+footer nav ul a{
+ height: 45px;
+ padding: 0;
+ margin-left: -10px;
+}
+footer nav ul a:hover{
+  background-color:transparent;
+}
+
+.social-media img{
+  width:50px;
+  height: 50px;
+  border-radius:4px;
+}
+@media(max-width:600px){
+  footer{
+    text-align: center;
+  }
+}
+
