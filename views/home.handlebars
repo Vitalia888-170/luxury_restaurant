@@ -47,20 +47,20 @@
     <h4 class="white-text center-align">Today special</h4>
     <div class="slider">
       <ul class="slides">
+        {{#if topDishes.length}}
+        {{#each topDishes}}
         <li>
           <div class="row">
             <div class="col s12 m6 offset-m3">
               <div class="card">
                 <div class="card-image">
                   <div class="img-container"
-                    style="background: url('../images/1icon.jpg'); background-size:cover; background-position:center">
+                    style="background: url('{{image}}'); background-size:cover; background-position:center">
                   </div>
-                  <span class="card-title black-text">Food number 1</span>
                 </div>
                 <div class="card-content">
-                  <p>printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-                    since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                    specimen book.</p>
+                  <h5 class="card-title black-text center-align">{{title}}</h5>
+                  <p class="center-align">{{description}}</p>
                   <div class="row valign-wrapper special">
                     <div class="col s6 m3 special_items">
                       <h4>Luxury</h4>
@@ -69,7 +69,7 @@
                     <div class="col m6 offset-m1 hide-on-small-only">1-008 005 006</div>
                     <div class="col s6 m3 dollars orange-text">
                       <span>$</span>
-                      <span>90.00</span>
+                      <span>{{price}}</span>
                     </div>
                   </div>
                   <a class="card-link" href="#">View</a>
@@ -78,68 +78,8 @@
             </div>
           </div>
         </li>
-        <li>
-          <div class="row">
-            <div class="col s12 m6 offset-m3">
-              <div class="card">
-                <div class="card-image">
-                  <div class="img-container"
-                    style="background: url('../images/3icon.jpg'); background-size:cover; background-position:center">
-                  </div>
-                  <span class="card-title black-text">Food number 3</span>
-                </div>
-                <div class="card-content">
-                  <p>printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-                    since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                    specimen book.</p>
-                  <div class="row valign-wrapper">
-                    <div class="col s6 m3 special_items">
-                      <h4>Luxury</h4>
-                      <h3>Restaurant</h3>
-                    </div>
-                    <div class="col m6 offset-m1 hide-on-small-only">1-008 005 006</div>
-                    <div class="col s6 m3 dollars orange-text">
-                      <span>$</span>
-                      <span>55.00</span>
-                    </div>
-                  </div>
-                  <a class="card-link" href="#">View</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="row">
-            <div class="col s12 m6 offset-m3">
-              <div class="card">
-                <div class="card-image">
-                  <div class="img-container"
-                    style="background: url('../images/5icon.jpg'); background-size:cover; background-position:center">
-                  </div>
-                  <span class="card-title black-text">Food number 5</span>
-                </div>
-                <div class="card-content">
-                  <p>printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-                    since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                    specimen book.</p>
-                  <div class="row valign-wrapper">
-                    <div class="col s6 m3 special_items">
-                      <h4>Luxury</h4>
-                      <h3>Restaurant</h3>
-                    </div>
-                    <div class="col m6 offset-m1 hide-on-small-only">1-008 005 006</div>
-                    <div class="col s6 m3 dollars orange-text">
-                      <span>$</span>
-                      <span>63.00</span>
-                    </div>
-                  </div>
-                  <a class="card-link" href="#">View</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
+        {{/each}}
+        {{/if}}
       </ul>
     </div>
   </div>
@@ -150,83 +90,20 @@
       </div>
       <div class="food_list row m7"></div>
     </div>
-    <div class="main_list_dishes row">
-      <div class="col s12 m12 l6">
-        <div class="col s12 dishes_items">
-          <div class="dishes_title col s12 m9">
-            <h5>Goose liver with cherry sauce</h5>
-            <p class="grey-text text-lighten-1">Survived not only five centuries but the leap</p>
-          </div>
-          <div class="dishes_price col s12 m3">
-            <div class="dollars orange-text">$ 99.00</div>
-          </div>
+    <div class="main_list_dishes">
+      {{#if dishes.length}}
+      {{#each dishes}}
+      <div class="dishes_items">
+        <div class="dishes_title col s12 m9">
+          <h5>{{title}}</h5>
+          <p class="grey-text text-lighten-1 text-overflow">{{description}}</p>
         </div>
-        <div class="col s12 dishes_items">
-          <div class="dishes_title col s12 m9">
-            <h5>Quesadilla lunch with chicken</h5>
-            <p class="grey-text text-lighten-1">Donec eget augue at diam euismod viverra</p>
-          </div>
-          <div class="dishes_price col s12 m3">
-            <div class="dollars orange-text">$ 24.00</div>
-          </div>
-        </div>
-        <div class="col s12 dishes_items">
-          <div class="dishes_title col s12 m9">
-            <h5>Tuna carpaccio</h5>
-            <p class="grey-text text-lighten-1">Phasellus a ex accumsan, sollicitudin</p>
-          </div>
-          <div class="dishes_price col s12 m3">
-            <div class="dollars orange-text">$ 45.00</div>
-          </div>
-        </div>
-        <div class="col s12 dishes_items">
-          <div class="dishes_title col s12 m9">
-            <h5>Minestrone</h5>
-            <p class="grey-text text-lighten-1">Phasellus a ex accumsan, sollicitudin</p>
-          </div>
-          <div class="dishes_price col s12 m3">
-            <div class="dollars orange-text">$ 78.00</div>
-          </div>
+        <div class="dishes_price col s12 m3">
+          <div class="dollars orange-text">$ {{price}}</div>
         </div>
       </div>
-      <div class="col s12 m12 l6">
-        <div class="col s12 dishes_items">
-          <div class="dishes_title col s12 m9">
-            <h5>Four Seasons Pizza</h5>
-            <p class="grey-text text-lighten-1">Survived not only five centuries but the leap</p>
-          </div>
-          <div class="dishes_price col s12 m3">
-            <div class="dollars orange-text">$ 100.00</div>
-          </div>
-        </div>
-        <div class="col s12 dishes_items">
-          <div class="dishes_title col s12 m9">
-            <h5>Soup with ribs</h5>
-            <p class="grey-text text-lighten-1">Donec eget augue at diam euismod viverra</p>
-          </div>
-          <div class="dishes_price col s12 m3">
-            <div class="dollars orange-text">$ 50.00</div>
-          </div>
-        </div>
-        <div class="col s12 dishes_items">
-          <div class="dishes_title col s12 m9">
-            <h5>Salmon baked with sesame</h5>
-            <p class="grey-text text-lighten-1">Phasellus a ex accumsan, sollicitudin</p>
-          </div>
-          <div class="dishes_price col s12 m3">
-            <div class="dollars orange-text">$ 120.00</div>
-          </div>
-        </div>
-        <div class="col s12 dishes_items">
-          <div class="dishes_title col s12 m9">
-            <h5>Baked goat cheese with lettuce</h5>
-            <p class="grey-text text-lighten-1">Phasellus a ex accumsan, sollicitudin</p>
-          </div>
-          <div class="dishes_price col s12 m3">
-            <div class="dollars orange-text">$ 52.00</div>
-          </div>
-        </div>
-      </div>
+      {{/each}}
+      {{/if}}
     </div>
     <a href="../Menu_page/menu.html" target="_blank">
       <div class="explood_food waves-effect orange btn-large">Explood Food Menu</div>
@@ -270,76 +147,88 @@
       </div>
     </div>
   </div>
-  <form action="/booking" method="POST"></form>
-  <div class="row booking">
-    <h4 class="center-align">Reserve your table</h4>
-    <div class="col s12 m4 offset-m2">
-      <div class="input-field">
-        <input id="name" name="name" type="text" class="validate">
-        <label for="name">Full Name</label>
+  <form action="/reservation" method="POST">
+    <div class="row booking">
+      <h4 class="center-align">Reserve your table</h4>
+      <div class="col s12 m3 offset-m3">
+        <div class="input-field">
+          <input id="name" name="name" type="text" class="validate">
+          <label for="name">Full Name</label>
+        </div>
+        <div class="input-field">
+          <input id="email" name="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field">
+          <input id="guests" name="guests" type="number" class="validate">
+          <label for="guests">Guests</label>
+        </div>
       </div>
-      <div class="input-field">
-        <input id="email" name="email" type="email" class="validate">
-        <label for="email">Email</label>
-      </div>
-      <div class="input-field">
-        <input id="guests" name="guests" type="number" class="validate">
-        <label for="guests">Guests</label>
+      <div class="col s12 m3">
+        <div class="input-field">
+          <input id="phone" type="tel" name="phone" class="validate">
+          <label for="phone">Phone number</label>
+        </div>
+        <div class="input-field">
+          <input id="date" type="date" name="date" class="validate">
+          <label for="date">Date</label>
+        </div>
+        <select name="hours">
+          <option disabled selected>Choose hour</option>
+          <option value="9-10">9-10 a.m.</option>
+          <option value="10-11">10-11 a.m.</option>
+          <option value="11-12">11-12 a.m.</option>
+          <option value="12-13">12 a.m - 1 p.m.</option>
+          <option value="13-14">1-2 p.m.</option>
+          <option value="14-15">2-3 p.m.</option>
+          <option value="15-16">3-4 p.m.</option>
+          <option value="16-17">4-5 p.m.</option>
+          <option value="17-18">5-6 p.m.</option>
+          <option value="19-20">6-7 p.m.</option>
+          <option value="20-21">8-9 p.m.</option>
+          <option value="21-22">9-10 p.m.</option>
+        </select>
       </div>
     </div>
-    <div class="col s12 m4">
-      <div class="input-field">
-        <input id="phone" type="tel" name="phone" class="validate">
-        <label for="phone">Phone number</label>
-      </div>
-      <div class="input-field">
-        <input id="date" type="date" name="date" class="validate">
-        <label for="date">Date</label>
-      </div>
-      <div class="input-field">
-        <input id="hour" type="number" class="validate">
-        <label for="hour">Hour</label>
-      </div>
+    <input type="hidden" name="_csrf" value="{{csrf}}">
+    <div class="row s12">
+      <button class="btn-large orange col s8 m2 offset-s2 offset-m5">Make reservation</button>
     </div>
-  </div>
-  <div class="row s12">
-  <button class="btn-large orange col s8 m4 offset-s2 offset-m4">Make reservation</button>
-  </div>
-    </form>
-</main>
-<footer class="row grey darken-4 white-text">
-<div  class="col s12 m4">
-  <nav>
-  <h5>Navigation</h5>
-  <ul>
-    <li class="col s12"><a href="#">Home</a></li>
-    <li class="col s12"><a href="#">About</a></li>
-    <li class="col s12"><a href="#">Menu</a></li>
-    <li class="col s12"><a href="#">Reservation</a></li>
-    <li class="col s12"><a href="#">Recipe</a></li>
-    <li class="col s12"><a href="#">Contact</a></li>
-  </ul>
-</nav>
-</div>
-<div class="col s12 m6">
-  <h5>New letter</h5>
-  <p>Enter your email address and subscribe daily newsletter</p>
-  <form action="#">
-    <div class="input-field">
-        <input id="letter" name="letter" type="text" class="validate">
-        <label for="letter">Letter</label>
-      </div>
   </form>
-  <div class="row">
-    <div class="col s4 m2 social-media">
-      <img src="/images/facebook-icon.png" alt="facebook_icon"/>
+  </main>
+  <footer class="row grey darken-4 white-text">
+    <div class="col s12 m4">
+      <nav>
+        <h5>Navigation</h5>
+        <ul>
+          <li class="col s12"><a href="#">Home</a></li>
+          <li class="col s12"><a href="#">About</a></li>
+          <li class="col s12"><a href="#">Menu</a></li>
+          <li class="col s12"><a href="#">Reservation</a></li>
+          <li class="col s12"><a href="#">Recipe</a></li>
+          <li class="col s12"><a href="#">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="col s4 m2 social-media" >
-       <img src="/images/tvitter.png" alt="twitter_icon"/>
+    <div class="col s12 m6">
+      <h5>New letter</h5>
+      <p>Enter your email address and subscribe daily newsletter</p>
+      <form action="#">
+        <div class="input-field">
+          <input id="letter" name="letter" type="text" class="validate">
+          <label for="letter">Letter</label>
+        </div>
+      </form>
+      <div class="row">
+        <div class="col s4 m2 social-media">
+          <img src="/images/facebook-icon.png" alt="facebook_icon" />
+        </div>
+        <div class="col s4 m2 social-media">
+          <img src="/images/tvitter.png" alt="twitter_icon" />
+        </div>
+        <div class="col s4 m2 social-media">
+          <img src="/images/telegram.jpeg" alt="telegram_icon" />
+        </div>
+      </div>
     </div>
-    <div class="col s4 m2 social-media">
-       <img src="/images/telegram.jpeg" alt="telegram_icon"/>
-    </div>
-  </div>
-</div>
-</footer>
+  </footer>

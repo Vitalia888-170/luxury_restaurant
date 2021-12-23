@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var instances = M.Materialbox.init(elems);
 
   var elems = document.querySelectorAll('.slider');
-  var instances = M.Slider.init(elems, { height: 500 });
+  var instances = M.Slider.init(elems, { height: 550 });
 
   var elem_carousel = document.querySelectorAll('.carousel');
   var instances1 = M.Carousel.init(elem_carousel, { numVisible: 1 });

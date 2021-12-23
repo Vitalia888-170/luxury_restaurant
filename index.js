@@ -15,6 +15,7 @@ const userMiddleware = require('./middleware/user');
 const homeRouter = require('./routes/home');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
+const reservationRouter=require('./routes/reservation');
 
 
 const app = express();
@@ -54,6 +55,7 @@ app.use(userMiddleware);
 app.use('/', homeRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
+app.use('/reservation', reservationRouter);
 
 const PORT = 3000;
 

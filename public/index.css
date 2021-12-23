@@ -34,6 +34,22 @@ i {
 .wrapper {
   margin: 0 auto;
 }
+.main-container{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.main-container .btn{
+  margin-top: 20px;
+}
+.text-overflow{
+  width: 80%;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
 
 /*HEADER*/
 
@@ -351,7 +367,7 @@ h3 {
 .dollars {
   text-align: right;
   font-size: 18px;
-  padding-top: 10px;
+  padding-top: 15px;
 }
 .food_list {
   max-width: 600px;
@@ -376,12 +392,16 @@ h3 {
   position: relative;
   width: 100%;
   max-width: 900px;
-  height: 322px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column-gap:30px;
+  grid-row-gap: 10px;
+
 }
 .dishes_items {
   border-bottom: 1px solid #eeeeee;
-  margin-right: 10px;
+  padding: 5px 10px;
 
 }
 .dishes_title h5 {
@@ -436,6 +456,7 @@ h3 {
 .booking{
   padding: 0 35px;
 }
+
 footer{
   width: 100%;
   min-height:400px ;
@@ -465,4 +486,6 @@ footer nav ul a:hover{
     text-align: center;
   }
 }
-
+.reservation-logo img{
+  width: 80%;
+}
