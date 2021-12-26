@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 *,
 *:before,
 *:after {
@@ -5,13 +6,16 @@
   padding: 0;
   border: 0;
   box-sizing: border-box;
+  font-size: 18px;
 }
 html,
 body {
   width: 100%;
   height: 100%;
 }
-
+header nav{
+  background-color:#17181d;
+}
 li {
   list-style: none;
 }
@@ -20,8 +24,14 @@ a {
   text-decoration: none;
   transition: 0.4s ease-in-out;
 }
-
+.pos-center{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: space-around;
+}
 .valign-wrapper {
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -31,8 +41,9 @@ i {
 .btn-large {
   margin-top: 20px;
 }
-.wrapper {
-  margin: 0 auto;
+.content-height{
+  padding: 20px 0;
+  min-height: 500px;
 }
 .main-container{
   width: 100%;
@@ -58,13 +69,10 @@ i {
   display: none;
 }
 .nav-wrapper {
-  background-color: white;
   z-index: 10;
   padding: 0 35px;
 }
-.nav-wrapper ul li a {
-  color: rgb(12, 13, 27);
-}
+
 .nav-wrapper img {
   height: 100%;
 }
@@ -170,29 +178,27 @@ i {
   color: white;
 }
 .auth-content {
-  display: flex;
-  justify-content: space-around;
-  position: relative;
-  z-index: 5;
-  max-width: 800px;
-  margin: 0 auto;
   margin-top: 60px;
 }
 .auth-content img {
-  width: 46%;
+  width: 90%;
   margin-top: -100px;
+  position: relative;
+  z-index: 5;
 }
 .auth-bg {
   width: 100%;
   height: 100%;
-  max-height: 430px;
+  max-height: 530px;
   position: absolute;
-  top: 0;
+  top: 55px;
   left: 0;
 }
 .auth-tabs {
-  width: 32%;
-  margin-top: -40px;
+  max-width: 350px;
+  position: relative;
+  top: 50px;
+  z-index: 5;
 }
 .login-tab {
   margin-top: 15px;
@@ -217,7 +223,7 @@ i {
 }
 .login-tab input {
   width: 100%;
-  height: 35px;
+  height: 45px;
   padding: 5px 10px;
   border-radius: 5px;
   margin-top: 10px;
@@ -241,41 +247,67 @@ i {
 .title-container {
   position: relative;
   top: -60px;
+  height: 100vh;
   overflow: hidden;
+  z-index: 1;
+  background-color: #17181d;
+  padding-top: 50px;
 }
-
-.title-logo {
-  width: 100%;
-  max-width: 300px;
+.title-content{
+  font-family: 'Fredoka One', cursive;
+  animation: title-action 1s ease-in-out 0s 1;
+}
+.title-content span{
+  color: orange;
+}
+.title-content h1 ,.title-content span{
+  font-size: 45px;;
+}
+.title-content p{
+  color: white;
+  font-size: 24px;
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1px;
 }
 .title-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: url("https://magnoliavillas.com/wp-content/uploads/2020/10/Dinner-horz-1024x768-1.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  filter: blur(3px);
-  z-index: -1;
-}
-.valign-wrapper.logo {
   position: relative;
-  height: 100vh;
+  top: 50%;
+  transform: translate(0, -30%);
+  width: 100%;
+  height: 100%;
+  background: url("../images/food-13549.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+  animation: food-action 1s ease-in-out 0s 1;
 }
-.valign-wrapper.logo h5 {
-  position: absolute;
-  width: 280px;
-  background-color: black;
-  padding: 12px;
-  color: white;
-  top: 53%;
+@keyframes food-action{
+0%{
+  transform: translate(0, -100%) rotate(0deg);;
 }
+
+100%{
+  transform: translate(0, -30%) rotate(360deg);;
+}
+}
+@keyframes title-action{
+  0%{
+    transform: translate(-100%, 0);
+  }
+  
+  100%{
+    transform: translate(0, 0)
+  }
+  }
+@media(max-width:600px){
+  .title-img{
+    display: none;
+  }
+}
+
 .details {
   padding: 20px 0;
-  margin: -60px 0 0 0;
+  margin: -80px 0 0 0;
 }
 .slider-container {
   margin-top: 10px;
@@ -286,7 +318,7 @@ i {
 }
 .slider-bg {
   width: 100%;
-  height: 380px;
+  height: 494px;
   background-color: black;
   position: absolute;
   top: 0;
@@ -339,8 +371,14 @@ h3 {
   margin: 0;
   margin-bottom: 7px;
 }
-.special_items h3 {
+.special_items h3 , .text-pink-logo, .text-pink{
   color: #ff69b4;
+}
+.text-pink-logo{
+  font-size: 22px;
+}
+.text-white-logo{
+  font-size: 28px;
 }
 .row .special {
   margin-top: 10px;
@@ -362,7 +400,7 @@ h3 {
 }
 .img-container {
   width: 100%;
-  height: 250px;
+  height: 400px;
 }
 .dollars {
   text-align: right;
@@ -450,9 +488,12 @@ h3 {
 }
 
 #dropdown1 {
-  width: 140px;
+  width: 120px;
+  margin-left: -20px;
 }
-
+.top .select-wrapper input.select-dropdown{
+  margin-bottom: 40px;
+}
 .booking{
   padding: 0 35px;
 }
@@ -488,4 +529,11 @@ footer nav ul a:hover{
 }
 .reservation-logo img{
   width: 80%;
+}
+.top-dishes-form{
+margin-top: 50px;
+}
+/*DISHES*/
+.dishes .row{
+  margin: 0;
 }

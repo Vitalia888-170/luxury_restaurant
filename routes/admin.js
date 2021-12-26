@@ -18,6 +18,11 @@ router.get('/top', async (req, res) => {
     dishes
   })
 })
+router.get('/reservation', (req, res)=>{
+  res.render('reservation', {
+    title:"Reservation"
+  })
+})
 
 router.post('/add/dish', auth, dishesValidator, async (req, res) => {
   const errors = validationResult(req);
