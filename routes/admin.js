@@ -4,6 +4,8 @@ const Dish = require('../models/dishes');
 const { dishesValidator } = require('../utils/validators');
 const { validationResult } = require('express-validator/check')
 const auth = require('../middleware/auth');
+const User = require('../models/user');
+const ReservedList = require('../models/reservedList');
 
 router.get('/dish', (req, res) => {
   res.render('addDish', {
@@ -18,12 +20,25 @@ router.get('/top', async (req, res) => {
     dishes
   })
 })
-router.get('/reservation', (req, res)=>{
+router.get('/reservation', async (req, res) => {
+  let userList = await User.find({ "reservation.details.isConfirm": "false" });
+  console.log(userList);
   res.render('reservation', {
-    title:"Reservation"
+    title: "Reservation",
+    waitingList: userList
   })
 })
-
+router.post('/add/reservation', async (req, res) => {
+  const { date, hour,tables} = req.body;
+  let dateList = new ReservedList({
+    date, hour:{value:hour, tables}
+  })
+  try {
+    await dateList.save();
+  } catch (e) {
+    console.log(e);
+  }
+})
 router.post('/add/dish', auth, dishesValidator, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -32,7 +47,7 @@ router.post('/add/dish', auth, dishesValidator, async (req, res) => {
       error: errors.array()[0].msg,
       data: {
         title: req.body.title,
-        category:req.body.category,
+        category: req.body.category,
         description: req.body.description,
         image: req.body.imageUrl,
         price: req.body.price,
@@ -44,7 +59,7 @@ router.post('/add/dish', auth, dishesValidator, async (req, res) => {
   console.log(req.body.category);
   const dishes = new Dish({
     title: req.body.title,
-    category:req.body.category,
+    category: req.body.category,
     description: req.body.description,
     image: req.body.image,
     price: req.body.price,

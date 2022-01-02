@@ -1,4 +1,8 @@
+
 document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.date-format').forEach(node => {
+    node.textContent = toDate(node.textContent);
+  });
   var el = document.querySelector('.tabs');
   var instance = M.Tabs.init(el, {});
 
@@ -14,10 +18,26 @@ document.addEventListener('DOMContentLoaded', function () {
   var instances2 = M.Dropdown.init(elem_dropdown, { constrainWidth: false });
   var elem_select = document.querySelectorAll('select');
   var instances3 = M.FormSelect.init(elem_select);
+  var elemModal = document.querySelectorAll('.modal');
+  var instances4 = M.Modal.init(elemModal);
   burgerAction();
-
   appendCategories();
+  // addTables();
+  changeCardView();
+  let isCanvas=document.querySelector('#canvas');
+  if(isCanvas){
+    initCanvas();
+  }
+ 
 });
+
+const toDate = date => {
+  return new Intl.DateTimeFormat('ru-RU', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  }).format(new Date(date))
+}
 
 function burgerAction() {
   let burger = document.querySelector('.menu_burger');
@@ -34,37 +54,37 @@ function appendCategories() {
   const categories = [
     {
       id: 1,
-      name: "All",
+      name: "all",
       icon: '../images/Home-page_1_26.png'
     },
     {
       id: 2,
-      name: "Breakfast",
+      name: "breakfast",
       icon: '../images/Home-page_1_03.png'
     },
     {
       id: 3,
-      name: "Lunch",
+      name: "lunch",
       icon: '../images/Home-page_1_30.png'
     },
     {
       id: 4,
-      name: "Desserts",
+      name: "desserts",
       icon: '../images/Home-page_1_21.png'
     },
     {
       id: 5,
-      name: "Pizza",
+      name: "pizza",
       icon: '../images/Home-page_1_23.png'
     },
     {
       id: 6,
-      name: "Soups",
+      name: "soups",
       icon: '../images/Home-page_1_18.png'
     },
     {
       id: 7,
-      name: "Dinner",
+      name: "dinner",
       icon: '../images/Home-page_1_32.png'
     }
   ]
@@ -73,23 +93,22 @@ function appendCategories() {
   categories.forEach(category => {
     html += `<div class="category-item">
 <img src="${category.icon}" alt="${category.name}"/>
-<a href="#">${category.name}</a>
+<a href="/menu/${category.name}">${category.name.toUpperCase()}</a>
 </div>`
   });
-  container.insertAdjacentHTML('beforeend', html);
+container.innerHTML=html;
 }
-import { fabric } from "fabric";
 //reservation canvas
 let canvas
 let number
 const grid = 30
 const backgroundColor = '#f8f8f8'
 const lineStroke = '#ebebeb'
-const tableFill = 'rgba(150, 111, 51, 0.7)'
-const tableStroke = '#694d23'
+const tableFill = '#40c4ff'
+const tableStroke = '#0091ea'
 const tableShadow = 'rgba(0, 0, 0, 0.4) 3px 3px 7px'
-const chairFill = 'rgba(67, 42, 4, 0.7)'
-const chairStroke = '#32230b'
+const chairFill = '#424242'
+const chairStroke = '#000000'
 const chairShadow = 'rgba(0, 0, 0, 0.4) 3px 3px 7px'
 const barFill = 'rgba(0, 93, 127, 0.7)'
 const barStroke = '#003e54'
@@ -98,108 +117,24 @@ const barText = 'Bar'
 const wallFill = 'rgba(136, 136, 136, 0.7)'
 const wallStroke = '#686868'
 const wallShadow = 'rgba(0, 0, 0, 0.4) 5px 5px 20px';
-const photoUrlLandscape = 'https://images8.alphacoders.com/292/292379.jpg';
-const photoUrlPortrait = 'https://presspack.rte.ie/wp-content/blogs.dir/2/files/2015/04/AMC_TWD_Maggie_Portraits_4817_V1.jpg'
-let widthEl = document.getElementById('width')
-let heightEl = document.getElementById('height')
+const windowFill = '#e1f5fe'
+const windowStroke = '#b3e5fc'
+const windowShadow = 'rgba(0, 0, 0, 0.4) 5px 5px 20px';
+
 let canvasEl = document.getElementById('canvas')
 
 function initCanvas() {
-  if (canvas) {
-    canvas.clear()
-    canvas.dispose()
-  }
-  
+
   canvas = new fabric.Canvas('canvas')
   number = 1
-  canvas.backgroundColor = backgroundColor
-  canvas.setBackgroundImage('https://presspack.rte.ie/wp-content/blogs.dir/2/files/2015/04/AMC_TWD_Maggie_Portraits_4817_V1.jpg', canvas.renderAll.bind(canvas));
-
-
-  for (let i = 0; i < (canvas.height / grid); i++) {
-    const lineX = new fabric.Line([ 0, i * grid, canvas.height, i * grid], {
-      stroke: lineStroke,
-      selectable: false,
-      type: 'line'
-    })
-    const lineY = new fabric.Line([ i * grid, 0, i * grid, canvas.height], {
-      stroke: lineStroke,
-      selectable: false,
-      type: 'line'
-    })
-    sendLinesToBack()
-    canvas.add(lineX)
-    canvas.add(lineY)
-  }
-
-  canvas.on('object:moving', function(e) {
-    snapToGrid(e.target)
-  })
-
-  canvas.on('object:scaling', function(e) {
-    if (e.target.scaleX > 5) {
-      e.target.scaleX = 5
-    }
-    if (e.target.scaleY > 5) {
-      e.target.scaleY = 5
-    }
-    if (!e.target.strokeWidthUnscaled && e.target.strokeWidth) {
-      e.target.strokeWidthUnscaled = e.target.strokeWidth
-    }
-    if (e.target.strokeWidthUnscaled) {
-      e.target.strokeWidth = e.target.strokeWidthUnscaled / e.target.scaleX
-      if (e.target.strokeWidth === e.target.strokeWidthUnscaled) {
-          e.target.strokeWidth = e.target.strokeWidthUnscaled / e.target.scaleY
-      }
-    }
-  })
-
-  canvas.on('object:modified', function(e) {
-    e.target.scaleX = e.target.scaleX >= 0.25 ? (Math.round(e.target.scaleX * 2) / 2) : 0.5
-    e.target.scaleY = e.target.scaleY >= 0.25 ? (Math.round(e.target.scaleY * 2) / 2) : 0.5
-    snapToGrid(e.target)
-    if (e.target.type === 'table') {
-      canvas.bringToFront(e.target)
-    }
-    else {
-      canvas.sendToBack(e.target)
-    }
-    sendLinesToBack()
-  })
-
-  canvas.observe('object:moving', function (e) {
-    checkBoudningBox(e)
-  })
-  canvas.observe('object:rotating', function (e) {
-    checkBoudningBox(e)
-  })
-  canvas.observe('object:scaling', function (e) {
-    checkBoudningBox(e)
-  })
-}
-initCanvas()
-
-function resizeCanvas() {
-  widthEl = document.getElementById('width')
-  heightEl = document.getElementById('height')
-  canvasEl.width = widthEl.value ? widthEl.value : 302
-  canvasEl.height = heightEl.value ? heightEl.value : 812
+  canvas.backgroundColor = backgroundColor;
+  canvasEl.width = 600
+  canvasEl.height = 500
   const canvasContainerEl = document.querySelectorAll('.canvas-container')[0]
   canvasContainerEl.style.width = canvasEl.width
   canvasContainerEl.style.height = canvasEl.height
+  addDefaultObjects();
 }
-resizeCanvas()
-
-widthEl.addEventListener('change', () => {
-  resizeCanvas()
-  initCanvas()
-  addDefaultObjects()
-})
-heightEl.addEventListener('change', () => {
-  resizeCanvas()
-  initCanvas()
-  addDefaultObjects()
-})
 
 function generateId() {
   return Math.random().toString(36).substr(2, 8)
@@ -222,8 +157,8 @@ function addRect(left, top, width, height) {
   })
   const t = new fabric.IText(number.toString(), {
     fontFamily: 'Calibri',
-    fontSize: 14,
-    fill: '#fff',
+    fontSize: 20,
+    fill: '#000',
     textAlign: 'center',
     originX: 'center',
     originY: 'center'
@@ -238,87 +173,17 @@ function addRect(left, top, width, height) {
     id: id,
     number: number
   })
-  canvas.add(g)
   number++
   return g
 }
 
-function addCircle(left, top, radius) {
-  const id = generateId()
-  const o = new fabric.Circle({
-    radius: radius,
-    fill: tableFill,
-    stroke: tableStroke,
-    strokeWidth: 2,
-    shadow: tableShadow,
-    originX: 'center',
-    originY: 'center',
-    centeredRotation: true
-  })
-  const t = new fabric.IText(number.toString(), {
-    fontFamily: 'Calibri',
-    fontSize: 14,
-    fill: '#fff',
-    textAlign: 'center',
-    originX: 'center',
-    originY: 'center'
-  })
-  const g = new fabric.Group([o, t], {
-    left: left,
-    top: top,
-    centeredRotation: true,
-    snapAngle: 45,
-    selectable: true,
-    type: 'table',
-    id: id,
-    number: number
-  })
-  canvas.add(g)
-  number++
-  return g
-}
-
-function addTriangle(left, top, radius) {
-  const id = generateId()
-  const o = new fabric.Triangle({
-    radius: radius,
-    fill: tableFill,
-    stroke: tableStroke,
-    strokeWidth: 2,
-    shadow: tableShadow,
-    originX: 'center',
-    originY: 'center',
-    centeredRotation: true
-  })
-  const t = new fabric.IText(number.toString(), {
-    fontFamily: 'Calibri',
-    fontSize: 14,
-    fill: '#fff',
-    textAlign: 'center',
-    originX: 'center',
-    originY: 'center'
-  })
-  const g = new fabric.Group([o, t], {
-    left: left,
-    top: top,
-    centeredRotation: true,
-    snapAngle: 45,
-    selectable: true,
-    type: 'table',
-    id: id,
-    number: number
-  })
-  canvas.add(g)
-  number++
-  return g
-}
 
 function addChair(left, top, width, height) {
   const o = new fabric.Rect({
     left: left,
     top: top,
-    width: 30,
-    height: 30,
+    width: width,
+    height: height,
     fill: chairFill,
     stroke: chairStroke,
     strokeWidth: 2,
@@ -331,7 +196,6 @@ function addChair(left, top, width, height) {
     type: 'chair',
     id: generateId()
   })
-  canvas.add(o)
   return o
 }
 
@@ -389,7 +253,66 @@ function addWall(left, top, width, height) {
   canvas.add(o)
   return o
 }
+function addWindow(left, top, width, height) {
+  const o = new fabric.Rect({
+    left: left,
+    top: top,
+    width: width,
+    height: height,
+    fill: windowFill,
+    stroke: windowStroke,
+    strokeWidth: 2,
+    shadow: windowShadow,
+    originX: 'left',
+    originY: 'top',
+    centeredRotation: true,
+    snapAngle: 45,
+    selectable: true,
+    type: 'wall',
+    id: generateId()
+  })
+  canvas.add(o)
+  return o
+}
 
+function onePlacesGroup(left, top, chair) {
+  var group = new fabric.Group([chair], {
+    left: left,
+    top: top
+  });
+  canvas.add(group);
+}
+
+function twoPlacesGroup(left, top, table1, ...chair) {
+  var group = new fabric.Group([table1, ...chair], {
+    left: left,
+    top: top
+  });
+  canvas.add(group);
+}
+function threePlacesGroup(left, top, table1, ...chair) {
+  var group = new fabric.Group([table1, ...chair], {
+    left: left,
+    top: top
+  });
+  canvas.add(group);
+}
+
+function fourPlacesGroup(left, top, table1, ...chair) {
+  var group = new fabric.Group([table1, ...chair], {
+    left: left,
+    top: top
+  });
+  canvas.add(group);
+}
+
+function sixPlacesGroup(left, top, table1, ...chair) {
+  var group = new fabric.Group([table1, ...chair], {
+    left: left,
+    top: top
+  });
+  canvas.add(group);
+}
 function snapToGrid(target) {
   target.set({
     left: Math.round(target.left / (grid / 2)) * grid / 2,
@@ -397,207 +320,212 @@ function snapToGrid(target) {
   })
 }
 
-function checkBoudningBox(e) {
-  const obj = e.target
-
-  if (!obj) {
-    return
-  }
-  obj.setCoords()
-
-  const objBoundingBox = obj.getBoundingRect()
-  if (objBoundingBox.top < 0) {
-    obj.set('top', 0)
-    obj.setCoords()
-  }
-  if (objBoundingBox.left > canvas.width - objBoundingBox.width) {
-    obj.set('left', canvas.width - objBoundingBox.width)
-    obj.setCoords()
-  }
-  if (objBoundingBox.top > canvas.height - objBoundingBox.height) {
-    obj.set('top', canvas.height - objBoundingBox.height)
-    obj.setCoords()
-  }
-  if (objBoundingBox.left < 0) {
-    obj.set('left', 0)
-    obj.setCoords()
-  }
-}
-
-function sendLinesToBack() {
-  canvas.getObjects().map(o => {
-    if (o.type === 'line') {
-      canvas.sendToBack(o)
-    }
-  })
-}
-
-document.querySelectorAll('.rectangle')[0].addEventListener('click', function() {
-  const o = addRect(0, 0, 60, 60)
-  canvas.setActiveObject(o)
-})
-
-document.querySelectorAll('.circle')[0].addEventListener('click', function() {
-  const o = addCircle(0, 0, 30)
-  canvas.setActiveObject(o)
-})
-
-document.querySelectorAll('.triangle')[0].addEventListener('click', function() {
-  const o = addTriangle(0, 0, 30)
-  canvas.setActiveObject(o)
-})
-
-document.querySelectorAll('.chair')[0].addEventListener('click', function() {
-  const o = addChair(0, 0)
-  canvas.setActiveObject(o)
-})
-
-document.querySelectorAll('.bar')[0].addEventListener('click', function() {
-  const o = addBar(0, 0, 180, 60)
-  canvas.setActiveObject(o)
-})
-
-document.querySelectorAll('.wall')[0].addEventListener('click', function() {
-  const o = addWall(0, 0, 60, 180)
-  canvas.setActiveObject(o)
-})
-
-document.querySelectorAll('.remove')[0].addEventListener('click', function() {
-  const o = canvas.getActiveObject()
-  if (o) {
-    o.remove()
-    canvas.remove(o)
-    canvas.discardActiveObject()
-    canvas.renderAll()
-  }
-})
-
-document.querySelectorAll('.customer-mode')[0].addEventListener('click', function() {
-  canvas.getObjects().map(o => {
-    o.hasControls = false
-    o.lockMovementX = true
-    o.lockMovementY = true
-    if (o.type === 'chair' || o.type === 'bar' || o.type === 'wall') {
-      o.selectable = false
-    }
-    o.borderColor = '#38A62E'
-    o.borderScaleFactor = 2.5
-  })
-  canvas.selection = false
-  canvas.hoverCursor = 'pointer'
-  canvas.discardActiveObject()
-  canvas.renderAll()
-  document.querySelectorAll('.admin-menu')[0].style.display = 'none'
-  document.querySelectorAll('.customer-menu')[0].style.display = 'block'
-})
-
-document.querySelectorAll('.admin-mode')[0].addEventListener('click', function() {
-  canvas.getObjects().map(o => {
-    o.hasControls = true
-    o.lockMovementX = false
-    o.lockMovementY = false
-    if (o.type === 'chair' || o.type === 'bar' || o.type === 'wall') {
-      o.selectable = true
-    }
-    o.borderColor = 'rgba(102, 153, 255, 0.75)'
-    o.borderScaleFactor = 1
-  })
-  canvas.selection = true
-  canvas.hoverCursor = 'move'
-  canvas.discardActiveObject()
-  canvas.renderAll()
-  document.querySelectorAll('.admin-menu')[0].style.display = 'block'
-  document.querySelectorAll('.customer-menu')[0].style.display = 'none'
-})
-
-function formatTime(val) {
-  const hours =  Math.floor(val / 60)
-  const minutes = val % 60
+function formatTime(hours, minutes) {
   const englishHours = hours > 12 ? hours - 12 : hours
-  
-  const normal = hours + ':' + minutes + (minutes === 0 ? '0' : '')
   const english = englishHours + ':' + minutes + (minutes === 0 ? '0' : '') + ' ' + (hours > 12 ? 'PM' : 'AM')
-  
-  return normal + ' (' + english + ')'
+
+  return english
 }
 
-document.querySelectorAll('.submit')[0].addEventListener('click', function() {
-  const obj = canvas.getActiveObject()
-  $('#modal').modal('show')
-  let modalText = 'You have not selected anything'
-  if (obj) {
-    modalText = 'You have selected table ' + obj.number + ', time: ' + formatTime(slider.noUiSlider.get())
-  }
-  document.querySelectorAll('#modal-table-id')[0].innerHTML = modalText
-})
-
-const slider = document.getElementById('slider')
-noUiSlider.create(slider, {
-  start: 1200,
-  step: 15,
-  connect: 'lower',
-  range: {
-    min: 0,
-    max: 1425
-  }
-})
-
-const sliderValue = document.getElementById('slider-value')
-slider.noUiSlider.on('update', function(values, handle) {
-	sliderValue.innerHTML = formatTime(values[handle])
-})
 
 function addDefaultObjects() {
-  addChair(15, 105)
-  addChair(15, 135)
-  addChair(75, 105)
-  addChair(75, 135)
-  addChair(225, 75)
-  addChair(255, 75)
-  addChair(225, 135)
-  addChair(255, 135)
-  addChair(225, 195)
-  addChair(255, 195)
-  addChair(225, 255)
-  addChair(255, 255)
-  addChair(15, 195)
-  addChair(45, 195)
-  addChair(15, 255)
-  addChair(45, 255)
-  addChair(15, 315)
-  addChair(45, 315)
-  addChair(15, 375)
-  addChair(45, 375)
-  addChair(225, 315)
-  addChair(255, 315)
-  addChair(225, 375)
-  addChair(255, 375)
-  addChair(15, 435)
-  addChair(15, 495)
-  addChair(15, 555)
-  addChair(15, 615)
-  addChair(225, 615)
-  addChair(255, 615)
-  addChair(195, 495)
-  addChair(195, 525)
-  addChair(255, 495)
-  addChair(255, 525)
-  addChair(225, 675)
-  addChair(255, 675)
-
-  addRect(30, 90, 60, 90)
-  addRect(210, 90, 90, 60)
-  addRect(210, 210, 90, 60)
-  addRect(0, 210, 90, 60)
-  addRect(0, 330, 90, 60)
-  addRect(210, 330, 90, 60)
-  addRect(0, 450, 60, 60)
-  addRect(0, 570, 60, 60)
-  addRect(210, 480, 60, 90)
-  addRect(210, 630, 90, 60)
-
-  addBar(120, 0, 180, 60)
-
-  addWall(120, 510, 60, 60)
+  addWall(0, 0, 598, 10);
+  addWindow(60, 0, 100, 10)
+  addWindow(240, 0, 100, 10)
+  addWindow(420, 0, 100, 10);
+  addWall(0, 10, 10, 496);
+  addWall(10, 488, 587, 10);
+  addWall(588, 10, 10, 180);
+  addWall(150, 110, 300, 10);
+  addWall(150, 330, 300, 10);
+  addWall(588, 280, 10, 220);
+  addWindow(588, 50, 10, 100)
+  addWindow(588, 330, 10, 100);
+  addBar(30, 150, 50, 150);
+  threePlacesGroup(30, 15, addRect(60, 14, 50, 50), addChair(110, 26, 10, 25), addChair(50, 26, 10, 25), addChair(72, 65, 25, 10));
+  threePlacesGroup(140, 15, addRect(60, 14, 50, 50), addChair(110, 26, 10, 25), addChair(50, 26, 10, 25), addChair(72, 65, 25, 10))
+  threePlacesGroup(250, 15, addRect(60, 14, 50, 50), addChair(110, 26, 10, 25), addChair(50, 26, 10, 25), addChair(72, 65, 25, 10));
+  threePlacesGroup(360, 15, addRect(60, 14, 50, 50), addChair(110, 26, 10, 25), addChair(50, 26, 10, 25), addChair(72, 65, 25, 10))
+  sixPlacesGroup(490, 18, addRect(60, 14, 50, 90), addChair(110, 24, 10, 25), addChair(50, 24, 10, 25), addChair(70, 105, 25, 10), addChair(72, 2, 25, 10), addChair(50, 65, 10, 25), addChair(110, 65, 10, 25));
+  sixPlacesGroup(40, 360, addRect(60, 14, 50, 90), addChair(110, 24, 10, 25), addChair(50, 24, 10, 25), addChair(70, 105, 25, 10), addChair(72, 2, 25, 10), addChair(50, 65, 10, 25), addChair(110, 65, 10, 25));
+  fourPlacesGroup(160, 400, addRect(60, 54, 50, 50), addChair(110, 67, 10, 25), addChair(50, 67, 10, 25), addChair(73, 105, 25, 10), addChair(73, 42, 25, 10));
+  fourPlacesGroup(270, 400, addRect(60, 54, 50, 50), addChair(110, 67, 10, 25), addChair(50, 67, 10, 25), addChair(73, 105, 25, 10), addChair(73, 42, 25, 10));
+  fourPlacesGroup(380, 400, addRect(60, 54, 50, 50), addChair(110, 67, 10, 25), addChair(50, 67, 10, 25), addChair(73, 105, 25, 10), addChair(73, 42, 25, 10));
+  fourPlacesGroup(480, 400, addRect(60, 54, 50, 50), addChair(110, 67, 10, 25), addChair(50, 67, 10, 25), addChair(73, 105, 25, 10), addChair(73, 42, 25, 10));
+  fourPlacesGroup(170, 130, addRect(60, 54, 50, 50), addChair(110, 67, 10, 25), addChair(50, 67, 10, 25), addChair(73, 105, 25, 10), addChair(73, 42, 25, 10));
+  fourPlacesGroup(170, 250, addRect(60, 54, 50, 50), addChair(110, 67, 10, 25), addChair(50, 67, 10, 25), addChair(73, 105, 25, 10), addChair(73, 42, 25, 10));
+  twoPlacesGroup(280, 130, addRect(0, 10, 50, 50), addChair(13, 0, 25, 10), addChair(13, 61, 25, 10));
+  twoPlacesGroup(280, 250, addRect(0, 10, 50, 50), addChair(13, 0, 25, 10), addChair(13, 61, 25, 10));
+  twoPlacesGroup(370, 130, addRect(0, 10, 50, 50), addChair(13, 0, 25, 10), addChair(13, 61, 25, 10));
+  twoPlacesGroup(370, 250, addRect(0, 10, 50, 50), addChair(13, 0, 25, 10), addChair(13, 61, 25, 10));
+  onePlacesGroup(80, 150, addChair(0, 0, 20, 25));
+  onePlacesGroup(80, 190, addChair(0, 0, 20, 25));
+  onePlacesGroup(80, 235, addChair(0, 0, 20, 25));
+  onePlacesGroup(80, 275, addChair(0, 0, 20, 25));
 }
-addDefaultObjects()
+const tableArray = [
+  {
+    table: 1,
+    isOrder: false,
+    left: 40,
+    top: 15
+  },
+  {
+    table: 2,
+    isOrder: false,
+    left: 150,
+    top: 15
+  },
+  {
+    table: 3,
+    isOrder: false,
+    left: 260,
+    top: 15
+  },
+  {
+    table: 4,
+    isOrder: false,
+    left: 370,
+    top: 15
+  },
+  {
+    table: 5,
+    isOrder: false,
+    left: 500,
+    top: 30
+  },
+  {
+    table: 6,
+    isOrder: false,
+    left: 50,
+    top: 372
+  },
+  {
+    table: 7,
+    isOrder: false,
+    left: 170,
+    top: 412
+  },
+  {
+    table: 8,
+    isOrder: false,
+    left: 280,
+    top: 412
+  },
+  {
+    table: 9,
+    isOrder: false,
+    left: 390,
+    top: 412
+  },
+  {
+    table: 10,
+    isOrder: false,
+    left: 490,
+    top: 412
+  },
+  {
+    table: 11,
+    isOrder: false,
+    left: 180,
+    top: 142
+  },
+  {
+    table: 12,
+    isOrder: false,
+    left: 180,
+    top: 262
+  },
+  {
+    table: 13,
+    isOrder: false,
+    left: 280,
+    top: 140
+  },
+  {
+    table: 14,
+    isOrder: false,
+    left: 280,
+    top: 260
+  },
+  {
+    table: 15,
+    isOrder: false,
+    left: 370,
+    top: 140
+  },
+  {
+    table: 16,
+    isOrder: false,
+    left: 370,
+    top: 260
+  },
+];
+// function addTables() {
+//   tableArray.forEach(item => {
+//     createCustomTable(item.table === 5 || item.table === 6 ? 92 : 52, item.left, item.top, item.table, item.isOrder);
+//   })
+//   function createCustomTable(height, left, top, index, isOrder) {
+//     let div = document.createElement('div');
+//     div.setAttribute('data-index', index);
+//     div.className='table-item';
+//     div.innerHTML=index;
+//     div.className = 'table-div';
+//     div.style.position = 'absolute';
+//     div.style.backgroundColor = isOrder ? '#bdbdbd' : '40c4ff';
+//     div.style.border = '2px solid black';
+//     div.style.left = left + 'px';
+//     div.style.top = top + 'px';
+//     div.style.width = 52 + 'px';
+//     div.style.height = height + 'px';
+//     document.querySelector('.canvas-container').append(div);
+//   }
+
+// }
+// document.querySelector('.canvas-container').addEventListener('click', (e) => {
+//   if (e.target.classList.contains('table-div')) {
+//     let modifiedTables = [...tableArray];
+//     let selectedTable = Number(e.target.dataset.index);
+//     let index = tableArray.findIndex(item => item.table === selectedTable);
+//     modifiedTables[index].isOrder = true;
+//     let modalText = 'You have not selected anything';
+//     if (selectedTable) {
+//       document.querySelectorAll('#table-list')[0].value = modifiedTables;
+//     } else {
+//       document.querySelector('.modal-content').innerHTML = modalText;
+//     }
+//     console.log(modifiedTables);
+//   }
+  
+// });
+// document.querySelector('.reservation-container').addEventListener('click', (e)=>{
+//   if(e.target.closest('.reserve-details')){
+//     console.log(e.target);
+//     let children=Array.from(e.target.parentNode.children);
+//     console.log(children);
+//     let values=children.map(item=>item.innerText);
+//     document.querySelector('#date').value=values[0];
+//     document.querySelector('#hour').value=values[1];
+//   }
+// })
+
+const categoryElem = document.querySelector('#category');
+if (categoryElem) {
+  categoryElem.addEventListener('change', (e) => {
+    location.reload(true);
+   })
+}
+
+function changeCardView(){
+  const menu_container=document.querySelector('.change-card-pannel');
+  const menu_list=document.querySelector('.menu-list');
+ menu_container.addEventListener('click', (e)=>{
+   if(e.target.classList.contains('fa-list')){
+       menu_list.classList.add('list');
+   }else if(e.target.classList.contains('fa-th')){
+    menu_list.classList.remove('list');
+   }
+ })
+
+}
+

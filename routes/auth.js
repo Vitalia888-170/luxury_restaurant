@@ -147,7 +147,8 @@ router.post('/register', registerValidator, async (req, res) => {
   }
   const hashPassword = await bcrypt.hash(password, 10)
   const user = new User({
-    name, email, password: hashPassword, cart: { items: [] }
+    name, email, password: hashPassword,
+    cart: { items: [] }, reservation:{details:[]}
   })
   await user.save();
   await transporter.sendMail(regEmail(email));

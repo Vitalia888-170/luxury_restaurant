@@ -1,178 +1,169 @@
-  <div class="title-container row valign-wrapper">
-     <div class="title-content col s10 offset-s1 m4 offset-m1">
-      <h1 class="white-text">Order tasty & fresh food  <span>anytime</span></h2>
+<div class="title-container row valign-wrapper">
+  <div class="title-content col s10 offset-s1 m4 offset-m1">
+    <h1 class="white-text">Order tasty & fresh food <span>anytime</span></h2>
       <p>Just confirm your order and enjoy our delicious fastest delivery!</p>
-      <a href="#" class="btn btn-large orange">Order</a> 
-    </div>
-    <div class="title-img col m4 offset-m1"></div>
+      <a href="#" class="btn btn-large orange">Order</a>
   </div>
-  <div class="row #fffde7 yellow lighten-5 details">
-    <div class="col s12 m6 0ffset-s0 offset-m6">
-      <div class="col s4 m3 center-align valign-wrapper">
-        <i class="fa fa-newspaper" aria-hidden="true"></i>
-        <a href="#" class="grey-text text-darken-4">News</a>
-      </div>
-      <div class="col s4 m3 center-align valign-wrapper">
-        <i class="fa fa-star" aria-hidden="true"></i>
-        <a href="#" class="grey-text text-darken-4">Events</a>
-      </div>
-      <div class="col s4 m3 center-align valign-wrapper">
-        <i class="fa fa-home" aria-hidden="true"></i>
-        <a href="#" class="grey-text text-darken-4">Blog</a>
-      </div>
-      <div class="col s0 m3 center-align valign-wrapper hide-on-small-only">
-        <p>1-008 005 006</p>
-      </div>
+  <div class="title-img col m4 offset-m1"></div>
+</div>
+<div class="row #fffde7 yellow lighten-5 details">
+  <div class="col s12 m6 0ffset-s0 offset-m6">
+    <div class="col s4 m3 center-align valign-wrapper">
+      <i class="fa fa-newspaper" aria-hidden="true"></i>
+      <a href="#" class="grey-text text-darken-4">News</a>
     </div>
-  </div>
-  <div class="container content-height pos-center">
-    <div class="row">
-      <div class="col s10 offset-s1 offset-m2 m8 center-align">
-        <h4>About restaurant</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum. </p>
-        <div class="waves-effect orange btn-large">
-          <a href="#" target="_blank">
-            <div>Read more</div>
-          </a>
-        </div>
-      </div>
+    <div class="col s4 m3 center-align valign-wrapper">
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <a href="#" class="grey-text text-darken-4">Events</a>
+    </div>
+    <div class="col s4 m3 center-align valign-wrapper">
+      <i class="fa fa-home" aria-hidden="true"></i>
+      <a href="#" class="grey-text text-darken-4">Blog</a>
+    </div>
+    <div class="col s0 m3 center-align valign-wrapper hide-on-small-only">
+      <p>1-008 005 006</p>
     </div>
   </div>
-  <div class="slider-container">
-    <div class="slider-bg"></div>
-    <h4 class="white-text center-align">Today special</h4>
-    <div class="slider">
-      <ul class="slides">
-        {{#if topDishes.length}}
-        {{#each topDishes}}
-        <li>
-          <div class="row">
-            <div class="col s12 m8 offset-m2">
-              <div class="card">
-                <div class="card-image">
-                  <div class="img-container"
-                    style="background: url('{{image}}'); background-size:cover; background-position:center">
+</div>
+<div class="container content-height pos-center">
+  <div class="row">
+    <div class="col s10 offset-s1 offset-m2 m8 center-align">
+      <h4>About restaurant</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+        est laborum. </p>
+      <div class="waves-effect orange btn-large">
+        <a href="#" target="_blank">
+          <div>Read more</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="slider-container">
+  <div class="slider-bg"></div>
+  <h4 class="white-text center-align">Today special</h4>
+  <div class="slider">
+    <ul class="slides">
+      {{#if topDishes.length}}
+      {{#each topDishes}}
+      <li>
+        <div class="row">
+          <div class="col s12 m8 offset-m2">
+            <div class="card">
+              <div class="card-image">
+                <div class="img-container"
+                  style="background: url('{{image}}'); background-size:cover; background-position:center">
+                </div>
+              </div>
+              <div class="card-content">
+                <h5 class="card-title black-text center-align">{{title}}</h5>
+                <p class="center-align">{{description}}</p>
+                <div class="row valign-wrapper special">
+                  <div class="col s6 m3 special_items">
+                    <h4>Luxury</h4>
+                    <h3>Restaurant</h3>
+                  </div>
+                  <div class="col m6 offset-m1 hide-on-small-only">1-008 005 006</div>
+                  <div class="col s6 m3 dollars orange-text">
+                    <span>$</span>
+                    <span>{{price}}</span>
                   </div>
                 </div>
-                <div class="card-content">
-                  <h5 class="card-title black-text center-align">{{title}}</h5>
-                  <p class="center-align">{{description}}</p>
-                  <div class="row valign-wrapper special">
-                    <div class="col s6 m3 special_items">
-                      <h4>Luxury</h4>
-                      <h3>Restaurant</h3>
-                    </div>
-                    <div class="col m6 offset-m1 hide-on-small-only">1-008 005 006</div>
-                    <div class="col s6 m3 dollars orange-text">
-                      <span>$</span>
-                      <span>{{price}}</span>
-                    </div>
-                  </div>
-                  <a class="card-link" href="#">View</a>
-                </div>
+                <a class="card-link" href="#">View</a>
               </div>
             </div>
           </div>
-        </li>
-        {{/each}}
-        {{/if}}
-      </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="main_list_title">
-      <div class="food_menu">
-        <h4>Food Menu</h4>
-      </div>
-      <div class="food_list row m7"></div>
-    </div>
-    <div class="main_list_dishes">
-      {{#if dishes.length}}
-      {{#each dishes}}
-      <div class="dishes_items">
-        <div class="dishes_title col s12 m9">
-          <h5>{{title}}</h5>
-          <p class="grey-text text-lighten-1 text-overflow">{{description}}</p>
         </div>
-        <div class="dishes_price col s12 m3">
-          <div class="dollars orange-text">$ {{price}}</div>
-        </div>
-      </div>
+      </li>
       {{/each}}
       {{/if}}
-    </div>
-    <a href="../Menu_page/menu.html" target="_blank">
-      <div class="explood_food waves-effect orange btn-large">Explood Food Menu</div>
-    </a>
+    </ul>
   </div>
-  <div class="clients">
-    <h4>Happy clients</h4>
-    <div class="clients_container">
-      <div class="carousel">
-        <div class="carousel-item">
-          <div class="clients_foto">
-            <img src="../images/foto1.jpg" alt="">
-          </div>
-          <h3>Dr. Joanna Prabakaran</h3>
-          <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and
-            a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved
-            over the years, sometimes by accident, sometimes on purpose.
-            Sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes
-            on purpose. </p>
+</div>
+<div class="row">
+  <div class="main_list_title">
+    <div class="food_menu">
+      <h4>Food Menu</h4>
+    </div>
+    <div class="food_list col m6 offset-m3"></div>
+  </div>
+  <div class="main_list_dishes">
+    {{#if dishes.length}}
+    {{#each dishes}}
+    <div class="dishes_items">
+      <div class="dishes_title col s12 m9">
+        <h5>{{title}}</h5>
+        <p class="grey-text text-lighten-1 text-overflow">{{description}}</p>
+      </div>
+      <div class="dishes_price col s12 m3">
+        <div class="dollars orange-text">$ {{price}}</div>
+      </div>
+    </div>
+    {{/each}}
+    {{/if}}
+  </div>
+  <a href="../Menu_page/menu.html" target="_blank">
+    <div class="explood_food waves-effect orange btn-large">Explood Food Menu</div>
+  </a>
+</div>
+<div class="clients">
+  <h4>Happy clients</h4>
+  <div class="clients_container">
+    <div class="carousel">
+      <div class="carousel-item">
+        <div class="clients_foto">
+          <img src="../images/foto1.jpg" alt="">
         </div>
-        <div class="carousel-item">
-          <div class="clients_foto">
-            <img src="../images/foto2.jpg" alt="">
-          </div>
-          <h3>Ms. Eleonora Wish</h3>
-          <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and
-            a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved
-            over the years, sometimes by accident, sometimes on purpose. </p>
+        <h3>Dr. Joanna Prabakaran</h3>
+        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and
+          a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved
+          over the years, sometimes by accident, sometimes on purpose.
+          Sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes
+          on purpose. </p>
+      </div>
+      <div class="carousel-item">
+        <div class="clients_foto">
+          <img src="../images/foto2.jpg" alt="">
         </div>
-        <div class="carousel-item">
-          <div class="clients_foto">
-            <img src="../images/foto3.jpg" alt="">
-          </div>
-          <h3>Mr. Adrew Rail</h3>
-          <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and
-            a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved
-            over the years, sometimes by accident, sometimes on purpose.
-            'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the
-            years, sometimes by accident, sometimes on purpose. </p>
+        <h3>Ms. Eleonora Wish</h3>
+        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and
+          a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved
+          over the years, sometimes by accident, sometimes on purpose. </p>
+      </div>
+      <div class="carousel-item">
+        <div class="clients_foto">
+          <img src="../images/foto3.jpg" alt="">
         </div>
+        <h3>Mr. Adrew Rail</h3>
+        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and
+          a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved
+          over the years, sometimes by accident, sometimes on purpose.
+          'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the
+          years, sometimes by accident, sometimes on purpose. </p>
       </div>
     </div>
   </div>
-  <form action="/reservation" method="POST" class="content-height">
-    <div class="row booking">
-      <h4 class="center-align">Reserve your table</h4>
-      <div class="col s12 m3 offset-m3">
-        <div class="input-field">
-          <input id="name" name="name" type="text" class="validate">
-          <label for="name">Full Name</label>
-        </div>
-        <div class="input-field">
-          <input id="email" name="email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
+</div>
+<form action="/reservation" method="POST">
+  <div class="row booking">
+    <h4 class="center-align">Reserve your table</h4>
+    <div class="col m8 offset-m3">
+      <div class="col s10 offset-s1 m3">
         <div class="input-field">
           <input id="guests" name="guests" type="number" class="validate">
           <label for="guests">Guests</label>
         </div>
       </div>
-      <div class="col s12 m3">
-        <div class="input-field">
-          <input id="phone" type="tel" name="phone" class="validate">
-          <label for="phone">Phone number</label>
-        </div>
+      <div class="col s10 offset-s1 m3">
         <div class="input-field">
           <input id="date" type="date" name="date" class="validate">
           <label for="date">Date</label>
         </div>
+      </div>
+      <div class="col s10 offset-s1 m3 hour">
         <select name="hours">
           <option disabled selected>Choose hour</option>
           <option value="9-10">9-10 a.m.</option>
@@ -194,41 +185,42 @@
     <div class="row s12">
       <button class="btn-large orange col s8 m2 offset-s2 offset-m5">Make reservation</button>
     </div>
-  </form>
-  </main>
-  <footer class="row grey darken-4 white-text">
-    <div class="col s12 m4">
-      <nav>
-        <h5>Navigation</h5>
-        <ul>
-          <li class="col s12"><a href="#">Home</a></li>
-          <li class="col s12"><a href="#">About</a></li>
-          <li class="col s12"><a href="#">Menu</a></li>
-          <li class="col s12"><a href="#">Reservation</a></li>
-          <li class="col s12"><a href="#">Recipe</a></li>
-          <li class="col s12"><a href="#">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="col s12 m6">
-      <h5>New letter</h5>
-      <p>Enter your email address and subscribe daily newsletter</p>
-      <form action="#">
-        <div class="input-field">
-          <input id="letter" name="letter" type="text" class="validate">
-          <label for="letter">Letter</label>
-        </div>
-      </form>
-      <div class="row">
-        <div class="col s4 m2 social-media">
-          <img src="/images/facebook-icon.png" alt="facebook_icon" />
-        </div>
-        <div class="col s4 m2 social-media">
-          <img src="/images/tvitter.png" alt="twitter_icon" />
-        </div>
-        <div class="col s4 m2 social-media">
-          <img src="/images/telegram.jpeg" alt="telegram_icon" />
-        </div>
+  </div>
+</form>
+</main>
+<footer class="row grey darken-4 white-text">
+  <div class="col s12 m4">
+    <nav>
+      <h5>Navigation</h5>
+      <ul>
+        <li class="col s12"><a href="#">Home</a></li>
+        <li class="col s12"><a href="#">About</a></li>
+        <li class="col s12"><a href="#">Menu</a></li>
+        <li class="col s12"><a href="#">Reservation</a></li>
+        <li class="col s12"><a href="#">Recipe</a></li>
+        <li class="col s12"><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col s12 m6">
+    <h5>New letter</h5>
+    <p>Enter your email address and subscribe daily newsletter</p>
+    <form action="#">
+      <div class="input-field">
+        <input id="letter" name="letter" type="text" class="validate">
+        <label for="letter">Letter</label>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col s4 m2 social-media">
+        <img src="/images/facebook-icon.png" alt="facebook_icon" />
+      </div>
+      <div class="col s4 m2 social-media">
+        <img src="/images/tvitter.png" alt="twitter_icon" />
+      </div>
+      <div class="col s4 m2 social-media">
+        <img src="/images/telegram.jpeg" alt="telegram_icon" />
       </div>
     </div>
-  </footer>
+  </div>
+</footer>

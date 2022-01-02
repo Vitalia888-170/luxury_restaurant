@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const Reservation = require('../models/reservation');
+const reservedList = require('../models/reservedList');
 
 const router = Router();
 router.get('/', (req, res) => {
@@ -8,14 +8,10 @@ router.get('/', (req, res) => {
   })
 })
 router.post('/', async (req, res) => {
-  const { name, email, guests, phone, date, hours } = req.body;
-  const booking = new Reservation({ name, email, guests, phone, date, hours });
-  try {
-    await booking.save();
-    res.redirect('/reservation');
-  } catch (e) {
-    console.log(e);
-  }
+  const {guests, date, hours} = req.body;
+ const guestsNumber=Number(guests);
+ await req.user.makeReservation(date, hours, guestsNumber)
+ res.redirect('/reservation');
 })
 
 module.exports = router;

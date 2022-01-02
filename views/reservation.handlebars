@@ -1,57 +1,70 @@
-<div class="container-fluid text-center">
-  <h1><a href="http://fabricjs.com/" target="_blank">Fabric.js</a> Restaurant reservation system</h1>
-  <p class="text-muted">There is no need to use jQuery or Bootstrap at all, it's used only to show modals and make buttons look better. I have also used <a href="https://refreshless.com/nouislider/" target="_blank">noUiSlider</a> for time selection.</p>
-  <div class="form-group admin-menu">
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-3 form-group">
-        <label>Width (px)</label>
-        <input type="number" id="width" class="form-control" value="302" />
+<div class="reservation-container row">
+  <div class="col s10 offset-s1 m4 user-wait">
+    <h4 class="center-align">Wait for reservation:</h4>
+    <div class="user-wait-list">
+      {{#if waitingList.length}}
+      {{#each waitingList}}
+      <div class="wait-item">
+        <div>
+          <h6>{{name}}</h6>
+          <p>{{email}}</p>
+        </div>
+        <div>cancel</div>
+        <div class="reserve-grid">
+          {{#each reservation.details}}
+          <div class="reserve-details">
+            <p class="date-format">{{date}}</p>
+            <p>{{hour}}</p>
+            <p>{{guests}}</p>
+          </div>
+          {{/each}}
+        </div>
       </div>
-      <div class="col-sm-2 form-group">
-        <label>Height (px)</label>
-        <input type="number" id="height" class="form-control" value="812" />
-      </div>
-      <div class="col-sm-2 form-group">
-        <label>&nbsp;</label>
-        <br />
-        <button class="btn btn-primary">Save</button>
-      </div>
+      {{/each}}
+      {{else}}
+      <p>No orders</p>
+      {{/if}}
     </div>
-    <div class="btn-group">
-      <button class="btn btn-primary rectangle">+ &#9647; Table</button>
-      <button class="btn btn-primary circle">+ &#9711; Table</button>
-      <button class="btn btn-primary triangle">+ &#9651; Table</button>
-      <button class="btn btn-primary chair">+ Chair</button>
-      <button class="btn btn-primary bar">+ Bar</button>
-      <button class="btn btn-default wall">+ Wall</button>
-      <button class="btn btn-danger remove">Remove</button>
-      <button class="btn btn-warning customer-mode">Customer mode</button>
-    </div>
-  </div>
-  
-  <div class="form-group customer-menu" style="display: none;">
-    <div class="btn-group">
-      <button class="btn btn-success submit">Submit reservation</button>
-      <button class="btn btn-warning admin-mode">Admin mode</button>
-    </div>
-    <br />
-    <br />
-    <div id="slider"></div>
-    <div id="slider-value"></div>
-  </div>
-  
-  <canvas id="canvas" width="302" height="812"></canvas>
-</div>
 
-<div class="modal fade" id="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body text-center">
-        <p id="modal-table-id"></p>
+  </div>
+  <div class="form-group admin-menu col s10 offset-s1 m4">
+    <h2 class="center-align">Check table booking</h2>
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Reserve</a>
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h5 class="center-align">Confirm booking table</h5>
+        <form action="/admin/add/reservation" method="POST" class="top-dishes-form">
+         <div class="input-field col s6 offset-s3">
+            <span>Client:</span>
+            <input id="client" type="string" name="client" class="validate">
+          </div>
+          <div class="input-field col s6 offset-s3">
+            <span>Table:</span>
+            <input id="table" type="number" name="table" class="validate">
+          </div>
+          <div class="input-field col s6 offset-s3">
+            <span>Date:</span>
+            <input id="date" type="string" name="date" class="validate">
+          </div>
+          <div class="input-field col s6 offset-s3">
+            <span>Hour:</span>
+            <input id="hour" type="string" name="hour" class="validate">
+          </div>
+          <input type="hidden" name="table-list" id="table-list" />
+          <input type="hidden" name="_csrf" value="{{csrf}}" />
+          <button class="col s12 m4 offset-m4 btn grey darken-4" type="submit">Confirm & Send letter</button>
+        </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      <div class="modal-footer col s12 m2 offset-m10">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
       </div>
     </div>
+    <div class="canvas-container">
+      <canvas id="canvas" width="600" height="500"></canvas>
+    </div>
+  </div>
+  <div class="col s10 offset-s1 m4 user-reserved">
+    <h4 class="center-align">Already reserved:</h4>
+    <div class="user-reserved-list"></div>
   </div>
 </div>

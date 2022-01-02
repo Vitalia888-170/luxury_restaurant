@@ -26,7 +26,35 @@ const user = new Schema({
         }
       }
     ]
+  },
+  reservation: {
+    details: [
+      {
+        date: Date,
+        hour: {
+          type: String,
+          required: true
+        },
+        guests: {
+          type: Number,
+          required: true
+        },
+        isConfirm: {
+          type: Boolean,
+          default: false
+        }
+      }
+    ]
   }
 })
+
+user.methods.makeReservation = function (date, hour, guests) {
+  let details = [...this.reservation.details];
+    details.unshift({
+      date, hour, guests, isConfirm: false
+    })
+  this.reservation = { details };
+  return this.save();
+}
 
 module.exports = model('User', user);

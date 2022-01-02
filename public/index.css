@@ -408,10 +408,12 @@ h3 {
   padding-top: 15px;
 }
 .food_list {
-  max-width: 600px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-  grid-column-gap:10px;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-column-gap:30px;
   grid-row-gap:10px;
 }
 .food_menu {
@@ -495,9 +497,11 @@ h3 {
   margin-bottom: 40px;
 }
 .booking{
-  padding: 0 35px;
+  padding: 35px 0;
 }
-
+.booking h4{
+  margin-bottom: 30px;
+}
 footer{
   width: 100%;
   min-height:400px ;
@@ -536,4 +540,124 @@ margin-top: 50px;
 /*DISHES*/
 .dishes .row{
   margin: 0;
+}
+/*RESERVATION*/
+.hour .select-wrapper input.select-dropdown{
+  margin: 15px 0 0 0;
+}
+.reservation-container{
+  width: 100%;
+  height: 100vh;
+  padding: 60px 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.canvas-container {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+}
+.user-reserved-list,
+.user-wait-list{
+  width: 100%;
+  height: 600px;
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+}
+.reserve-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+}
+.wait-item{
+  background-color: #c7cae2;
+  padding: 10px 30px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.canvas-container{
+  position: relative;
+}
+.table-div{
+  position: absolute;
+  background-color: #ff69b4;
+}
+.table-item{
+ text-align: center;
+ margin-top: 15px;
+  font-size: 20px;
+}
+
+/*MENU*/
+.change-card-pannel{
+  position: absolute;
+top: 100px;
+right: 100px;
+}
+.change-card-pannel i{
+margin: 0 20px;
+cursor: pointer;
+}
+.menu-list{
+  width:100%;
+  max-width: 1000px;
+  padding: 0 20px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-column-gap:30px;
+  grid-row-gap:10px;
+  margin-top: 50px;
+}
+.menu-list.list{
+  grid-template-columns: 1fr;
+}
+.card{
+  position:relative;
+  width: 100%;
+  height: auto;
+}
+.list .card{
+  display: flex;
+  height: 210px;
+}
+.card .card-image{
+  height: 300px;
+}
+.list .card .card-image{
+width:30%;
+height: 210px;
+}
+.card .card-content{
+  width: 100%;
+}
+.card .card-content .card-title{
+  padding-right: 20px;
+}
+.card .card-content .card-title + p{
+  position: absolute;
+  bottom: 6px;
+  right: 20px;
+  font-size: 28px;
+  color: orange;
+}
+.card .card-content .card-title {
+position: relative;
+}
+.card .card-content .card-title i {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.order-btn{
+  margin-top: 10px;
+}
+.current-dish img{
+  width: 80%;
+  margin-left: 10%;
+background-size: cover;
+background-repeat: no-repeat;
 }
