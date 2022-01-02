@@ -661,3 +661,14 @@ position: relative;
 background-size: cover;
 background-repeat: no-repeat;
 }
+
+/*---CART---*/
+.total-price{
+  margin-top: 30px;
+}
+.cart-food-additional{
+  width: 24%;
+  position: absolute;
+  bottom: 5%;
+  right: 30px;
+}

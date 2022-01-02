@@ -89,7 +89,8 @@ function appendCategories() {
     }
   ]
   let container = document.querySelector('.food_list');
-  let html = '';
+  if(container){
+    let html = '';
   categories.forEach(category => {
     html += `<div class="category-item">
 <img src="${category.icon}" alt="${category.name}"/>
@@ -98,6 +99,7 @@ function appendCategories() {
   });
 container.innerHTML=html;
 }
+  }
 //reservation canvas
 let canvas
 let number
@@ -519,13 +521,52 @@ if (categoryElem) {
 function changeCardView(){
   const menu_container=document.querySelector('.change-card-pannel');
   const menu_list=document.querySelector('.menu-list');
- menu_container.addEventListener('click', (e)=>{
-   if(e.target.classList.contains('fa-list')){
-       menu_list.classList.add('list');
-   }else if(e.target.classList.contains('fa-th')){
-    menu_list.classList.remove('list');
-   }
- })
+ if(menu_container){
+  menu_container.addEventListener('click', (e)=>{
+    if(e.target.classList.contains('fa-list')){
+        menu_list.classList.add('list');
+    }else if(e.target.classList.contains('fa-th')){
+     menu_list.classList.remove('list');
+    }
+  })
+ }
 
 }
 
+const $cart = document.querySelector('#cart');
+if ($cart) {
+   $cart.addEventListener('click', (e) => {
+      if (e.target.classList.contains('js-remove')) {
+         const id = e.target.dataset.id;
+         const csrf = e.target.dataset.csrf
+         fetch('/cart/remove/' + id, {
+            method: 'delete',
+            headers: {
+               'X-XSRF-TOKEN': csrf
+            }
+         }).then(res => res.json())
+            .then(cart => {
+               if (cart.dishes.length) {
+                  const html = cart.dishes.map(item => {
+                     return `
+                        <tr>
+                              <td>${item.title}</td>
+                              <td class="center-align">${item.count}</td>
+                              <td class="center-align">
+                                 <button class="btn black js-remove" data-id="${item.id}" data-csrf="${csrf}">Delete</button>
+                              </td>
+                           </tr>
+                     `
+                  }).join('');
+                  $cart.querySelector('tbody').innerHTML = html;
+                  $cart.querySelector('.total-price').textContent = cart.price;
+               } else {
+                  $cart.innerHTML = `<div class="pos-center">
+                  <img class="empty-card" src="../images/empty-cart.png" alt="empty cart" />
+                  <p class="center-align">The card is empty</p>
+              </div>`
+               }
+            })
+      }
+   })
+}

@@ -16,6 +16,7 @@ const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
 const reservationRouter=require('./routes/reservation');
 const menuRouter=require('./routes/menu');
+const cartRouter=require('./routes/cart');
 
 
 const app = express();
@@ -49,6 +50,7 @@ app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/reservation', reservationRouter);
 app.use('/menu', menuRouter);
+app.use('/cart', cartRouter);
 
 const PORT = 3000;
 
