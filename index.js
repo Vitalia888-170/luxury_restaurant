@@ -17,6 +17,7 @@ const adminRouter = require('./routes/admin');
 const reservationRouter=require('./routes/reservation');
 const menuRouter=require('./routes/menu');
 const cartRouter=require('./routes/cart');
+const aboutRouter=require('./routes/about');
 
 
 const app = express();
@@ -51,8 +52,9 @@ app.use('/admin', adminRouter);
 app.use('/reservation', reservationRouter);
 app.use('/menu', menuRouter);
 app.use('/cart', cartRouter);
+app.use('/about', aboutRouter);
 
-const PORT = 3000;
+const PORT = 4000;
 
 
 async function start() {

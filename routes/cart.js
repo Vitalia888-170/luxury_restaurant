@@ -15,13 +15,16 @@ function mapCartItems(cart) {
     }, 0)
  }
  router.get('/', async (req, res) => {
-    const user = await req.user.populate('cart.items.dishId')
+    const user = await req.user.populate('cart.items.dishId');
+    const userId=req.user._id;
     const dishes = mapCartItems(user.cart);
+
     res.render('cart', {
        title: 'Cart',
        isCard: true,
        dishes: dishes,
-       price: computePrice(dishes)
+       price: computePrice(dishes),
+       userId
     })
  })
 router.post('/add', async(req, res)=>{

@@ -20,6 +20,13 @@ document.addEventListener('DOMContentLoaded', function () {
   var instances3 = M.FormSelect.init(elem_select);
   var elemModal = document.querySelectorAll('.modal');
   var instances4 = M.Modal.init(elemModal);
+
+  var elemsCarousel = document.querySelectorAll('.carousel');
+  var instances = M.Carousel.init(elemsCarousel, {
+    fullWidth:true,
+    duration:50,
+    indicators: true
+  });
   burgerAction();
   appendCategories();
   // addTables();
@@ -33,9 +40,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const toDate = date => {
   return new Intl.DateTimeFormat('ru-RU', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
+     day: '2-digit',
+     month: '2-digit',
+     year: '2-digit',
+     hour: '2-digit',
+     minute: '2-digit'
   }).format(new Date(date))
 }
 
@@ -532,6 +541,7 @@ function changeCardView(){
  }
 
 }
+
 
 const $cart = document.querySelector('#cart');
 if ($cart) {

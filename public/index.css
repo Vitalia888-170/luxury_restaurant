@@ -16,9 +16,7 @@ body {
 header nav{
   background-color:#17181d;
 }
-li {
-  list-style: none;
-}
+
 a {
   color: black;
   text-decoration: none;
@@ -612,10 +610,10 @@ cursor: pointer;
   grid-row-gap:10px;
   margin-top: 50px;
 }
-.menu-list.list{
+.list{
   grid-template-columns: 1fr;
 }
-.card{
+.menu-list .card{
   position:relative;
   width: 100%;
   height: auto;
@@ -624,30 +622,30 @@ cursor: pointer;
   display: flex;
   height: 210px;
 }
-.card .card-image{
+.menu-list .card .card-image{
   height: 300px;
 }
 .list .card .card-image{
 width:30%;
 height: 210px;
 }
-.card .card-content{
+.menu-list .card .card-content{
   width: 100%;
 }
-.card .card-content .card-title{
+.menu-list .card .card-content .card-title{
   padding-right: 20px;
 }
-.card .card-content .card-title + p{
+.menu-list .card .card-content .card-title + p{
   position: absolute;
   bottom: 6px;
   right: 20px;
   font-size: 28px;
   color: orange;
 }
-.card .card-content .card-title {
+.menu-list .card .card-content .card-title {
 position: relative;
 }
-.card .card-content .card-title i {
+.menu-list .card .card-content .card-title i {
   position: absolute;
   top: 0;
   right: 0;
@@ -671,4 +669,41 @@ background-repeat: no-repeat;
   position: absolute;
   bottom: 5%;
   right: 30px;
+}
+
+.order-list ol{
+  padding-left: 30px;
+}
+.order-list .card{
+position: relative; 
+}
+.accepted{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.accepted i{
+  color: white;
+}
+.carousel{
+  height: 600px;
+}
+.carousel .indicators .indicator-item{
+  background-color:orange;
+}
+.carousel .indicators .indicator-item .active{
+  background-color:orange;
+  border: 1px solid rgb(238, 107, 59);
+}
+.about{
+  padding-bottom: 50px;
+}
+.about p{
+  padding: 10px 0;
 }

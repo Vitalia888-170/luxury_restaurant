@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col s10 offset-s1 m6 offset-m3">
+        <h1 class="center-align">Card</h1>
+        <div id="cart">
+            {{#if dishes.length}}
+            <img class="cart-food-additional" src="../images/restaurant-food.png" alt="food" />
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th class="center-align">Count</th>
+                        <th class="center-align">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each dishes}}
+                    <tr>
+                        <td>{{title}}</td>
+                        <td class="center-align">{{count}}</td>
+                        <td class="center-align">
+                            <button class="btn black js-remove" data-id="{{id}}"
+                                data-csrf="{{@root.csrf}}">Delete</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <div class="total-price">
+                <p><strong>Total price:</strong> <span class="total-price">{{price}} $</span></p>
+                <form action="/admin/orders" method="POST">
+                    <input type="hidden" name="userId" value="{{userId}}">
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
+                    <button class="btn black" type="submit">Make an order</button>
+                </form>
+            </div>
+            {{else}}
+            <div class="pos-center">
+                <img class="empty-card" src="../images/empty-cart.png" alt="empty cart" />
+                <p class="center-align">The card is empty</p>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

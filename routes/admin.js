@@ -6,6 +6,8 @@ const { validationResult } = require('express-validator/check')
 const auth = require('../middleware/auth');
 const User = require('../models/user');
 const ReservedList = require('../models/reservedList');
+const Order = require('../models/orders');
+
 
 router.get('/dish', (req, res) => {
   res.render('addDish', {
@@ -27,6 +29,27 @@ router.get('/reservation', async (req, res) => {
     title: "Reservation",
     waitingList: userList
   })
+});
+router.get('/order', async (req, res) => {
+  let index=1;
+  try {
+     const orders = await Order.find();
+     res.render('orders', {
+        title: 'Orders',
+        isOrder: true,
+        index:index++,
+        orders: orders.map(order => {
+           return {
+              ...order._doc,
+              price: order.dishes.reduce((total, item) => {
+                 return total += item.count * item.dish.price
+              }, 0)
+           }
+        })
+     })
+  } catch (e) {
+     console.log(e);
+  }
 })
 router.post('/add/reservation', async (req, res) => {
   const { date, hour,tables} = req.body;
@@ -85,4 +108,41 @@ router.post('/top/delete', async (req, res) => {
   const modifyStatus = await Dish.updateMany({}, { $set: { isSpecial: false } });
   res.redirect('/');
 })
+
+
+router.post('/orders', async (req, res) => {
+  try {
+     const user = await User.findById(req.body.userId).populate('cart.items.dishId')
+     const dishes = user.cart.items.map(item => ({
+        count: item.count,
+        dish: { ...item.dishId._doc }
+     }))
+     const order = new Order({
+        user: {
+           name: user.name,
+           email: user.email
+        },
+        dishes: dishes,
+        isAccept:false
+     })
+     await order.save()
+     await req.user.clearCart()
+     res.redirect('/cart')
+  } catch (e) {
+     console.log(e);
+  }
+});
+
+router.post('/orders/accepted', async(req, res)=>{
+  try{
+    let order=await Order.findByIdAndUpdate(req.body.orderId, {isAccept:true});
+    await order.save();
+    console.log(order);
+    res.redirect('/admin/order')
+  }catch(e){
+    console.log(e);
+  }
+})
+
+
 module.exports = router;

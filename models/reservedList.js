@@ -5,21 +5,9 @@ const reservedList = new Schema({
     type: Date,
     required: true
   },
-  details: {
-    items: [
-      {
-        hour: {
-          type: String,
-          required: true
-        },
-        canvas:String,
-        userId: {
-          type: Schema.Types.ObjectId,
-          ref: 'User',
-          required: true
-        }
-      }
-    ]
+  hour: {
+    value: String,
+    tables: []
   }
 });
 
